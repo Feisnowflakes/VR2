@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <title>Fermentation VR Intro</title>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+    <!--	<script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>-->
+    <script src="JS/L48-javascript-END.js"></script>
+    <script>
+        var count2 = 0;
+        window.onmousedown = function () {
+            var music = document.getElementById("vd2");
+            console.log(count2);
+
+            if (count2 === 0) {
+                if (music.paused) {
+                    music.paused = false;
+                    music.play();
+                }
+            }
+
+            count2 = count2 + 1;
+        }
+    </script>
+    <script>
+        AFRAME.registerComponent('hover_text', {
+            init: function () {
+                var el = this.el; // <a-box>
+                el.addEventListener('mouseenter', function () {
+                    el.setAttribute('material', 'opacity:0');
+                    el.setAttribute('text', 'color:#24CAFF');
+                    console.log("1");
+                });
+                // el.addEventListener('mouseleave', function () {
+                //     el.setAttribute('color', '#FFFFFF');
+                //     console.log("2");
+                // });
+            }
+        });
+    </script>
+</head>
+
+<body>
+<a-scene>
+    <a-assets>
+    </a-assets>
+    <a-entity gltf-model="assets/kitchen008.gltf" position="-240 -50 -16.07077"
+              sound="src: #intro;
+                       on: click;
+                       volume: 1;
+                       refDistance: 4;
+                       rolloffFactor:4">
+    </a-entity>
+
+
+    <a-text value="Lactic acid bacteria naturally present on the cabbage (native microorganisms). Although in small fractions at the beginning, the levels of lactic acid bacteria increase as the fermentation process progresses. "
+            text="align:center;width:5;color:#FFFFFF"
+            geometry="width:5; height:2; primitive:plane"
+            material="opacity:1;color:#000000"
+            hover_text>
+    </a-text>
+    <a-entity gltf-model="assets/Cabbage.gltf" position="35 -12 -44.45612" scale="0.5 0.5 0.5">
+    </a-entity>
+
+    <a-entity gltf-model="assets/salt.gltf" rotation="0 90 0" position="0 -12 -45.45612" scale="0.01 0.01 0.01">
+    </a-entity>
+    <a-entity gltf-model="assets/jar3.gltf" rotation="0 90 0" position="4 -12 -43.45612" scale="0.015 0.015 0.015">
+    </a-entity>
+
+
+    <a-entity position="0 0 4">
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+    </a-entity>
+
+</a-scene>
+</body>
+</html>
